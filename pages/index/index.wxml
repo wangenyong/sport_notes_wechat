@@ -1,0 +1,26 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button class='userinfo-button' wx:if="{{!hasUserInfo && canIUse}}" size='mini' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+    <view class='placeholder'></view>
+    <view bindtap='onNewSport' class='btn-circle'>
+      <image class="btn-circle-icon" src='/images/write.png' mode='aspectFit'></image>
+    </view>
+  </view>
+  <block wx:for="{{sports}}" wx:for-item="sport" wx:key="index">
+    <view class='sport-item' bindtap='bindItemClick' data-label='{{sport.label}}'>
+      <view class='sport-time-bg'>
+        <text class='sport-time'>{{sport.time}}</text>
+      </view>
+      <text class='sport-unit'>{{sport.unit}}</text>
+      <view class='sport-divider'></view>
+      <text class='sport-label'>{{sport.label}}</text>
+      <view class='placeholder'></view>
+      <text class='sport-date'>{{sport.date}}</text>
+    </view>
+  </block>
+</view>

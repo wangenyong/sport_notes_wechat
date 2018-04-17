@@ -1,0 +1,99 @@
+/* pages/sportNew/sportNew.wxss */
+
+.container {
+  padding-top: 16rpx;
+}
+
+.basicinfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #fff;
+  height: 82rpx;
+  margin-left: 16rpx;
+  margin-right: 16rpx;
+  margin-top: 16rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+.basicinfo-label-bg {
+  display: flex;
+  background-color: #e8e8e8;
+  height: 82rpx;
+  align-items: center;
+  padding-left: 32rpx;
+  padding-right: 32rpx;
+  margin-right: 32rpx;
+  border-top-left-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
+}
+
+.basicinfo-label, .basicinfo-label-weight {
+  font-size: medium;
+}
+
+.basicinfo-label-weight {
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+}
+
+.input {
+  width: 80rpx;
+}
+
+.sport-item {
+  display: flex;
+  margin-left: 16rpx;
+  margin-right: 16rpx;
+  margin-top: 16rpx;
+}
+
+.sport-item-name-bg {
+  height: 82rpx;
+  width: 359rpx;
+  background-color: #e8e8e8;
+  border-top-left-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #262626;
+  font-size: medium;
+}
+
+.sport-item-value-bg {
+  height: 82rpx;
+  width: 359rpx;
+  background-color: #fff;
+  border-top-right-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #262626;
+  font-size: medium;
+}
+
+.btn-add {
+  width: 718rpx;
+  align-items: center;
+  margin-top: 16rpx;
+  font-size: medium;
+  padding: 10rpx;
+  margin-bottom: 128rpx;
+  flex-shrink: 0;
+}
+
+.btn-save {
+  width: 718rpx;
+  align-items: center;
+  margin-top: 16rpx;
+  background-color: #f8914b;
+  color: #fff;
+  position: fixed;
+  bottom: 16rpx;
+  left: 16rpx;
+  right: 16rpx;
+}

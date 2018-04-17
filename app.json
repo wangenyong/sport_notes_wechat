@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/sportAdd/sportAdd",
+    "pages/sportInput/sportInput",
+    "pages/sportDetail/sportDetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "运动记",
+    "navigationBarTextStyle": "black"
+  }
+}

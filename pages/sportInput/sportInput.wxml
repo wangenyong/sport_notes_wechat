@@ -1,0 +1,26 @@
+<!--pages/data/data.wxml-->
+<view class="container">
+  <!--选择运动项目-->
+  <text class='label'>请选择运动项目</text>
+  <view class='data-item'>
+    <picker class='picker' value="{{sportEvent}}" range='{{eventArray}}' bindchange="bindSportEventChange">
+      <text class='label-item'>{{eventArray[sportEvent]}}</text>
+    </picker>
+  </view>
+  <!--或者-->
+  <view class='or'>
+    <text class='label-or'>OR</text>
+  </view>
+  <!--手动输入运动项目-->
+  <text class='label'>请输入运动项目</text>
+  <view class='data-item'>
+    <input class='input' bindinput='bindEventValueInput'></input>
+  </view>
+  <!--输入运动数据-->
+  <text class='label'>请输入运动数据（5km/4×12/50min）</text>
+  <view class='data-item'>
+    <input class='input' bindinput='bindDataValueInput'></input>
+  </view>
+  <!--保存按钮-->
+  <button class='btn-save' bindtap='bindSaveData'>保存</button>
+</view>

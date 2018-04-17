@@ -1,0 +1,20 @@
+<!--pages/sportDetail/sportDetail.wxml-->
+<view class='container'>
+  <!--日期-->
+  <view class='item'>
+    <image class='icon' src='/images/calendar.png' mode='aspectFit'></image>
+    <text class='content'>{{date}}</text>
+  </view>
+  <!--时间-->
+  <view class='item'>
+    <image class='icon' src='/images/stopwatch.png' mode='aspectFit'></image>
+    <text class='content'>{{time}}</text>
+  </view>
+
+  <view class='sport-container'>
+    <view class='sport-item' wx:for="{{items}}" wx:for-item="item" wx:key="index">
+        <view class='sport-value'>{{item.value}}</view>
+        <view class='sport-name'>{{item.name}}</view>
+    </view>
+  </view>
+</view>

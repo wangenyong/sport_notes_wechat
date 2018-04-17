@@ -1,0 +1,41 @@
+<!--sportNew.wxml-->
+<view class="container">
+  <!--开始时间-->
+  <view class='basicinfo'>
+    <view class='basicinfo-label-bg'>
+      <text class='basicinfo-label'>开始时间</text>
+    </view>
+    <picker class='picker' mode="time" value="{{startTime}}" start="00:00" end="23:59" bindchange="bindStartTimeChange">
+      <text class='basicinfo-label'>{{startTime}}</text>
+    </picker>
+  </view>
+  <!--结束时间-->
+  <view class='basicinfo'>
+    <view class='basicinfo-label-bg'>
+      <text class='basicinfo-label'>结束时间</text>
+    </view>
+    <picker class='picker' mode="time" value="{{stopTime}}" start="00:00" end="23:59" bindchange="bindStopTimeChange">
+      <text class='basicinfo-label'>{{stopTime}}</text>
+    </picker>
+  </view>
+  <!--运动类别-->
+  <view class='basicinfo'>
+    <view class='basicinfo-label-bg'>
+      <text class='basicinfo-label'>运动类别</text>
+    </view>
+    <picker class='picker' value="{{sportType}}" range='{{sportArray}}' bindchange="bindSportTypeChange">
+      <text class='basicinfo-label'>{{sportArray[sportType]}}</text>
+    </picker>
+  </view>
+  <!--运动数据列表-->
+  <view wx:for="{{items}}" wx:for-item="item" wx:key="index">
+    <view class='sport-item'>
+      <view class='sport-item-name-bg'>{{item.name}}</view>
+      <view class='sport-item-value-bg'>{{item.value}}</view>
+    </view>
+  </view>
+  <!--添加运动数据-->
+  <button class='btn-add' bindtap='bindAddDataTap'>添加运动数据</button>
+  <!--保存-->
+  <button class='btn-save'>保存</button>
+</view>

@@ -1,0 +1,46 @@
+/* pages/data/data.wxss */
+
+.label {
+  font-size: small;
+  margin-left: 32rpx;
+  margin-top: 32rpx;
+  margin-bottom: 16rpx;
+  color: #8c8c8c;
+}
+
+.data-item {
+  display: flex;
+  height: 82rpx;
+  background-color: #fff;
+  align-items: center;
+}
+
+.label-item {
+  font-size: medium;
+  margin-left: 32rpx;
+}
+
+.or {
+  display: flex;
+  justify-content: center;
+}
+
+.label-or {
+  font-size: medium;
+  font-weight: bold;
+  margin: 32rpx;
+}
+
+.input {
+  flex-grow: 1;
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+}
+
+.btn-save {
+  width: 718rpx;
+  align-items: center;
+  margin-top: 64rpx;
+  background-color: #f8914b;
+  color: #fff;
+}

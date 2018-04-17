@@ -1,0 +1,79 @@
+/**index.wxss**/
+
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.placeholder {
+  flex-grow: 1;
+}
+
+.userinfo-button {
+  margin: 32rpx;
+}
+
+.userinfo-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  margin: 32rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  font-size: medium;
+  font-weight: bold;
+}
+
+.sport-item {
+  display: flex;
+  background-color: #fff;
+  height: 114rpx;
+  margin-left: 16rpx;
+  margin-right: 16rpx;
+  margin-bottom: 16rpx;
+  border-radius: 8rpx;
+  align-items: center;
+}
+
+.sport-time-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64rpx;
+  width: 64rpx;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  margin-left: 32rpx;
+}
+
+.sport-time {
+  font-size: small;
+  font-weight: bold;
+}
+
+.sport-unit {
+  font-size: xx-small;
+  color: #8c8c8c;
+  margin-left: 8rpx;
+}
+
+.sport-divider {
+  width: 1rpx;
+  height: 36rpx;
+  background-color: #e8e8e8;
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+}
+
+.sport-label {
+  font-size: medium;
+}
+
+.sport-date {
+  font-size: small;
+  color: #8c8c8c;
+  margin-right: 32rpx;
+}
