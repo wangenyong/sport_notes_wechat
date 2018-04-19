@@ -10,22 +10,10 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     sports: [
       {
-        time: '52',
-        unit: '分钟',
-        label: '有氧运动',
+        duration: '52',
+        duration_suffix: '分钟',
+        category: '有氧运动',
         date: '23/3/18 周五'
-      },
-      {
-        time: '1.2',
-        unit: '小时',
-        label: '上肢力量',
-        date: '22/3/18 周四'
-      },
-      {
-        time: '48',
-        unit: '分钟',
-        label: '腿部力量',
-        date: '19/3/18 周一'
       }
     ]
   },
@@ -40,15 +28,36 @@ Page({
    * 列表点击
    */
   bindItemClick: function (e) {
-    let label = e.currentTarget.dataset.label;
-    console.log(label);
+    let category = e.currentTarget.dataset.category;
+    console.log(category);
 
     wx.navigateTo({
       url: '../sportDetail/sportDetail',
     })
   },
 
+  getSportNotes: function () {
+    var that = this;
+    wx.request({
+      url: 'http://localhost:3000/sports',
+      method: 'GET',
+      success: function (res) {
+        that.setData({
+          sports: res.data
+        });
+      },
+      fail: function (err) {
+        console.log(err);
+      },
+      complete: function () {
+        wx.stopPullDownRefresh();
+      }
+    })
+  },
+
   onLoad: function () {
+    wx.startPullDownRefresh();
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -76,6 +85,15 @@ Page({
       })
     }
   },
+
+  onShow: function (options) {
+    // Do something when show.
+  },
+
+  onPullDownRefresh: function () {
+    this.getSportNotes();
+  },
+
   getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo

@@ -12,13 +12,13 @@
     </view>
   </view>
   <block wx:for="{{sports}}" wx:for-item="sport" wx:key="index">
-    <view class='sport-item' bindtap='bindItemClick' data-label='{{sport.label}}'>
+    <view class='sport-item' bindtap='bindItemClick' data-category='{{sport.category}}'>
       <view class='sport-time-bg'>
-        <text class='sport-time'>{{sport.time}}</text>
+        <text class='sport-time'>{{sport.duration}}</text>
       </view>
-      <text class='sport-unit'>{{sport.unit}}</text>
+      <text class='sport-unit'>{{sport.duration_suffix}}</text>
       <view class='sport-divider'></view>
-      <text class='sport-label'>{{sport.label}}</text>
+      <text class='sport-label'>{{sport.category}}</text>
       <view class='placeholder'></view>
       <text class='sport-date'>{{sport.date}}</text>
     </view>
