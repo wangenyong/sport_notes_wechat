@@ -77,6 +77,13 @@ Page({
    * 保存运动数据
    */
   bindSaveDataTap: function () {
+    if (this.data.items.length == 0) {
+      wx.showToast({
+        title: '请添加运动数据 :)',
+        icon: 'none'
+      })
+      return;
+    }
     this.setData({
       loading: true
     })
@@ -94,6 +101,14 @@ Page({
       },
       success: function (res) {
         console.log(res);
+        // 设置上一个页面刷新数据
+        var pages = getCurrentPages();
+        var prevPage = pages[pages.length - 2];
+        prevPage.setData({
+          refresh: true
+        });
+        wx.navigateBack({
+        })
       },
       fail: function (err) {
         console.log(err);
@@ -124,11 +139,13 @@ Page({
     }
   },
 
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var date = util.formatDate(new Date());  
+    var date = util.formatDate(new Date());
     this.setData({
       date: date
     })

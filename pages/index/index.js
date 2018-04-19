@@ -8,14 +8,8 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    sports: [
-      {
-        duration: '52',
-        duration_suffix: '分钟',
-        category: '有氧运动',
-        date: '23/3/18 周五'
-      }
-    ]
+    sports: [],
+    refresh: false
   },
   //事件处理函数
   bindViewTap: function () {
@@ -36,6 +30,9 @@ Page({
     })
   },
 
+  /**
+   * 从网络获取运动记录数据
+   */
   getSportNotes: function () {
     var that = this;
     wx.request({
@@ -87,9 +84,17 @@ Page({
   },
 
   onShow: function (options) {
-    // Do something when show.
+    if (this.data.refresh) {
+      wx.startPullDownRefresh();
+      this.setData({
+        refresh: false
+      })
+    }
   },
 
+  /**
+   * 下拉刷新
+   */
   onPullDownRefresh: function () {
     this.getSportNotes();
   },
