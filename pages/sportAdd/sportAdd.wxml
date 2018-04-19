@@ -1,5 +1,13 @@
 <!--sportNew.wxml-->
 <view class="container">
+  <view class='basicinfo'>
+    <view class='basicinfo-label-bg'>
+      <text class='basicinfo-label'>训练日期</text>
+    </view>
+    <picker class='picker' mode="date" value="{{date}}" bindchange="bindDateChange">
+      <text class='basicinfo-label'>{{date}}</text>
+    </picker>
+  </view>
   <!--开始时间-->
   <view class='basicinfo'>
     <view class='basicinfo-label-bg'>
@@ -37,5 +45,5 @@
   <!--添加运动数据-->
   <button class='btn-add' bindtap='bindAddDataTap'>添加运动数据</button>
   <!--保存-->
-  <button class='btn-save'>保存</button>
+  <button class='btn-save' loading='{{loading}}' bindtap='bindSaveDataTap' >保存</button>
 </view>
