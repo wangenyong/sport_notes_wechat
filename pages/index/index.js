@@ -22,11 +22,9 @@ Page({
    * 列表点击
    */
   bindItemClick: function (e) {
-    let category = e.currentTarget.dataset.category;
-    console.log(category);
-
+    var model = JSON.stringify(e.currentTarget.dataset.sport);
     wx.navigateTo({
-      url: '../sportDetail/sportDetail',
+      url: '../sportDetail/sportDetail?model=' + model,
     })
   },
 

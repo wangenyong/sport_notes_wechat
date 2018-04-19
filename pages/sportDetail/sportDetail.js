@@ -7,35 +7,19 @@ Page({
   data: {
     date: '2018年3月23日 星期五',
     time: '52分钟',
-    items: [
-      {
-        name: '跑步',
-        value: '5km'
-      },
-      {
-        name: '骑行',
-        value: '100km'
-      },
-      {
-        name: '骑行',
-        value: '100km'
-      },
-      {
-        name: '骑行',
-        value: '100km'
-      },
-      {
-        name: '骑行',
-        value: '100km'
-      }
-    ]
+    items: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var bean = JSON.parse(options.model);
+    this.setData({
+      date: bean.date,
+      time: bean.duration + bean.duration_suffix,
+      items: bean.datasets
+    })
   },
 
   /**

@@ -12,7 +12,7 @@
     </view>
   </view>
   <block wx:for="{{sports}}" wx:for-item="sport" wx:key="index">
-    <view class='sport-item' bindtap='bindItemClick' data-category='{{sport.category}}'>
+    <view class='sport-item' bindtap='bindItemClick' data-sport='{{sport}}'>
       <view class='sport-time-bg'>
         <text class='sport-time'>{{sport.duration}}</text>
       </view>
