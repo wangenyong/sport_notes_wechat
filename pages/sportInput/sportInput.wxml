@@ -3,8 +3,8 @@
   <!--选择运动项目-->
   <text class='label'>请选择运动项目</text>
   <view class='data-item'>
-    <picker class='picker' value="{{sportEvent}}" range='{{eventArray}}' bindchange="bindSportEventChange">
-      <text class='label-item'>{{eventArray[sportEvent]}}</text>
+    <picker class='picker' value="{{sportEvent}}" range='{{historySports}}' bindchange="bindSportEventChange">
+      <text class='label-item'>{{historySports[sportEvent]}}</text>
     </picker>
   </view>
   <!--或者-->

@@ -6,12 +6,9 @@ Page({
    */
   data: {
     sportEvent: 0,
-    eventArray: [
-      '坐姿推胸机',
-      '坐姿下拉器械'
-    ],
     inputEventValue: '',
     inputDataValue: '',
+    historySports: []
   },
 
   /**
@@ -57,9 +54,10 @@ Page({
     let str = this.data.inputEventValue.trim();
     // 判断手动输入运动项目是否为空
     if (str.length == 0) {
-      obj.name = this.data.eventArray[this.data.sportEvent];
+      obj.name = this.data.historySports[this.data.sportEvent];
     } else {
       obj.name = str;
+      this.cacheSport(str);
     }
     obj.value = this.data.inputDataValue;
     var lastItems = prevPage.data.items;
@@ -77,7 +75,7 @@ Page({
    * 输入数据不能为空检查
    */
   formCheck: function () {
-    if (this.data.eventArray.length == 0 && this.data.inputEventValue.trim() == 0) {
+    if (this.data.historySports.length == 0 && this.data.inputEventValue.trim() == 0) {
       wx.showToast({
         title: '请输入运动项目!',
         icon: 'none'
@@ -95,10 +93,58 @@ Page({
   },
 
   /**
+   * 缓存数据
+   */
+  cacheSport: function (data) {
+    var that = this;
+    wx.getStorage({
+      key: 'historySports',
+      success: function(res) {
+        that.setData({
+          historySports: res.data
+        });
+        var historySports = that.data.historySports;
+        var flag = true;
+        for (let i in historySports) {
+          if (historySports[i] == data) {
+            flag = false;
+          }
+        };
+        if (flag) {
+          historySports.push(data);
+        }
+        wx.setStorage({
+          key: 'historySports',
+          data: historySports
+        })
+      },
+      fail: function(res) {
+        var historySports = that.data.historySports;
+        historySports.push(data);
+        wx.setStorage({
+          key: 'historySports',
+          data: historySports
+        })
+      }
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    wx.getStorage({
+      key: 'historySports',
+      success: function(res) {
+        that.setData({
+          historySports: res.data
+        })
+      },
+      fail: function(err) {
+        console.log(err);
+      }
+    })
   },
 
   /**
