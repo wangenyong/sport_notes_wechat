@@ -47,21 +47,21 @@ Page({
       return
     }
     // 获取上一页对象
-    var pages = getCurrentPages();
-    var prevPage = pages[pages.length - 2];
+    var pages = getCurrentPages()
+    var prevPage = pages[pages.length - 2]
 
-    var obj = {};
-    let str = this.data.inputEventValue.trim();
+    var obj = {}
+    let str = this.data.inputEventValue.trim()
     // 判断手动输入运动项目是否为空
     if (str.length == 0) {
-      obj.name = this.data.historySports[this.data.sportEvent];
+      obj.name = this.data.historySports[this.data.sportEvent]
     } else {
       obj.name = str;
-      this.cacheSport(str);
+      this.cacheSport(str)
     }
-    obj.value = this.data.inputDataValue;
-    var lastItems = prevPage.data.items;
-    lastItems.push(obj);
+    obj.value = this.data.inputDataValue
+    var lastItems = prevPage.data.items
+    lastItems.push(obj)
 
     prevPage.setData({
       items: lastItems,

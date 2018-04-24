@@ -1,6 +1,7 @@
 // pages/sportNew/sportNew.js
 
-var util = require('../../utils/util.js');
+var util = require('../../utils/util.js')
+const app = getApp()
 
 Page({
   /**
@@ -25,7 +26,8 @@ Page({
     ],
     // 运动数据
     items: [],
-    loading: false
+    loading: false,
+    sessionId: ''
   },
 
   /**
@@ -82,16 +84,20 @@ Page({
         title: '请添加运动数据 :)',
         icon: 'none'
       })
-      return;
+      return
     }
     this.setData({
       loading: true
     })
-    var time = this.calculateDuration();
-    var that = this;
+    var time = this.calculateDuration()
+    var that = this
     wx.request({
       url: 'http://localhost:3000/sports',
       method: 'POST',
+      header: {
+        'content-type': 'application/json',
+        'sessionId': that.data.sessionId
+      },
       data: {
         date: new Date(that.data.date),
         category: that.data.sportArray[that.data.sportType],
@@ -101,14 +107,21 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        // 设置上一个页面刷新数据
-        var pages = getCurrentPages();
-        var prevPage = pages[pages.length - 2];
-        prevPage.setData({
-          refresh: true
-        });
-        wx.navigateBack({
-        })
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none'
+          })
+        } else {
+          // 设置上一个页面刷新数据
+          var pages = getCurrentPages();
+          var prevPage = pages[pages.length - 2];
+          prevPage.setData({
+            refresh: true
+          });
+          wx.navigateBack({
+          })
+        }
       },
       fail: function (err) {
         console.log(err);
@@ -145,6 +158,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (app.globalData.sessionId) {
+      this.setData({
+        sessionId: app.globalData.sessionId
+      })
+    }
+
     var date = util.formatDate(new Date());
     this.setData({
       date: date

@@ -10,7 +10,6 @@ App({
     wx.getStorage({
       key: '3rd_session',
       success: res => {
-        console.log(res.data);
         this.globalData.sessionId = res.data
       },
       fail: err => {

@@ -39,7 +39,7 @@ Page({
       method: 'GET',
       header: {
         'content-type': 'application/json',
-        'sessionid': that.data.sessionId
+        'sessionId': that.data.sessionId
       },
       success: res => {
         that.setData({
