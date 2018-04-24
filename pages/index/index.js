@@ -9,7 +9,8 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     sports: [],
-    refresh: false
+    refresh: false,
+    sessionId: ''
   },
   //事件处理函数
   bindViewTap: function () {
@@ -36,22 +37,92 @@ Page({
     wx.request({
       url: 'http://localhost:3000/sports',
       method: 'GET',
-      success: function (res) {
+      header: {
+        'content-type': 'application/json',
+        'sessionid': that.data.sessionId
+      },
+      success: res => {
         that.setData({
           sports: res.data
         });
       },
-      fail: function (err) {
+      fail: err => {
         console.log(err);
       },
-      complete: function () {
-        wx.stopPullDownRefresh();
+      complete: () => {
+        wx.stopPullDownRefresh()
+      }
+    })
+  },
+
+  /**
+   * 登录
+   */
+  login: function () {
+    var that = this
+    // 显示登录Loading
+    wx.showLoading({
+      title: 'Loading',
+    })
+
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: 'http://localhost:3000/user/authorization', // 这个接口写于后端，用于向微信服务器 换取 session_key 和 openId 的接口
+          method: 'POST',
+          data: {
+            code: res.code // 将wx.login()返回 code 传至第三方服务器
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: res => {
+            // 设置全局及此页面SessionId
+            app.globalData.sessionId = res.data.wxtoken
+            that.setData({
+              sessionId: res.data.wxtoken
+            })
+            // 本地存储SessionId
+            wx.setStorage({
+              key: '3rd_session',
+              data: res.data.wxtoken,
+            });
+            // 拉取列表数据
+            wx.startPullDownRefresh()
+          },
+          fail: err => {
+            console.log(err)
+          }
+        })
+      }, 
+      fail: err => {
+        console.log(err);
+      },
+      complete: () => {
+        // 隐藏登录Loading
+        wx.hideLoading()
       }
     })
   },
 
   onLoad: function () {
-    wx.startPullDownRefresh();
+    var that = this;
+    if (app.globalData.sessionId) {
+      this.setData({
+        sessionId: app.globalData.sessionId
+      })
+      wx.checkSession({
+        success: () => {
+          wx.startPullDownRefresh()
+        },
+        fail: () => {
+          that.login()
+        }
+      })
+    } else {
+      that.login()
+    }
 
     if (app.globalData.userInfo) {
       this.setData({
@@ -105,6 +176,8 @@ Page({
       hasUserInfo: true
     })
   },
+
+  // 创建新的运动数据
   onNewSport: function () {
     wx.navigateTo({
       url: '../sportAdd/sportAdd'

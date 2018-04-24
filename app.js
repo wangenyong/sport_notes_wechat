@@ -5,13 +5,19 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
+    
+    // 获取本地存储的SessionId
+    wx.getStorage({
+      key: '3rd_session',
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res.data);
+        this.globalData.sessionId = res.data
+      },
+      fail: err => {
+        console.log(err)
       }
     })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -34,6 +40,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    sessionId: null
   }
 })
