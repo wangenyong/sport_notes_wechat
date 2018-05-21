@@ -7,7 +7,7 @@
     "pages/sportDetail/sportDetail"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundColor": "#f5f5f5",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "运动记",
     "navigationBarTextStyle": "black"

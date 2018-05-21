@@ -35,7 +35,7 @@ Page({
   getSportNotes: function () {
     var that = this;
     wx.request({
-      url: 'http://localhost:3000/sports',
+      url: 'https://wangenyong.com/sports',
       method: 'GET',
       header: {
         'content-type': 'application/json',
@@ -69,7 +69,7 @@ Page({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         wx.request({
-          url: 'http://localhost:3000/user/authorization', // 这个接口写于后端，用于向微信服务器 换取 session_key 和 openId 的接口
+          url: 'https://wangenyong.com/user/authorization', // 这个接口写于后端，用于向微信服务器 换取 session_key 和 openId 的接口
           method: 'POST',
           data: {
             code: res.code // 将wx.login()返回 code 传至第三方服务器

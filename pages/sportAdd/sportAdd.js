@@ -92,7 +92,7 @@ Page({
     var time = this.calculateDuration()
     var that = this
     wx.request({
-      url: 'http://localhost:3000/sports',
+      url: 'https://wangenyong.com/sports',
       method: 'POST',
       header: {
         'content-type': 'application/json',
