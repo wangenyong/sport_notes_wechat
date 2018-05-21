@@ -7,15 +7,14 @@ App({
     wx.setStorageSync('logs', logs)
     
     // 获取本地存储的SessionId
-    wx.getStorage({
-      key: '3rd_session',
-      success: res => {
-        this.globalData.sessionId = res.data
-      },
-      fail: err => {
-        console.log(err)
+    try {
+      var value = wx.getStorageSync('3rd_session')
+      if (value) {
+        this.globalData.sessionId = value
       }
-    })
+    } catch (e) {
+      console.log(err)
+    }
 
     // 获取用户信息
     wx.getSetting({
