@@ -42,12 +42,28 @@ Page({
         'sessionId': that.data.sessionId
       },
       success: res => {
-        that.setData({
-          sports: res.data
-        });
+        console.log(res)
+        if (res.statusCode == 200) {
+          that.setData({
+            sports: res.data
+          });
+        } else {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none'
+          })
+          that.setData({
+            sessionId: null
+          })
+        }
+        
       },
       fail: err => {
-        console.log(err);
+        wx.showToast({
+          title: '连接服务器失败，请稍后重试',
+          icon: 'none'
+        })
+
       },
       complete: () => {
         wx.stopPullDownRefresh()
@@ -154,7 +170,7 @@ Page({
 
   onShow: function (options) {
     if (this.data.refresh) {
-      wx.startPullDownRefresh();
+      wx.startPullDownRefresh()
       this.setData({
         refresh: false
       })
@@ -165,7 +181,12 @@ Page({
    * 下拉刷新
    */
   onPullDownRefresh: function () {
-    this.getSportNotes();
+    if (this.data.sessionId) {
+      this.getSportNotes()
+    } else {
+      this.login()
+    }
+    
   },
 
   getUserInfo: function (e) {
